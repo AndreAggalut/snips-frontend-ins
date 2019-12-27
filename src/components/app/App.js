@@ -26,13 +26,13 @@ class App extends React.Component {
     if (tempToken !== null) {
       tempToken = localStorage.getItem('app-token');
       if (tempToken !== null) {
-        axios.defaults.headers.common['Authorization'] = `Bearer ${tempToken}`;
+        axios.defaults.headers.common.Authorization = `Bearer ${tempToken}`;
       }
     }
   };
 
   render() {
-    const { HomePage, SnippetsPage, FourOhFourPage } = Pages;
+    const { HomePage, SnippetsPage, AccountPage, FourOhFourPage } = Pages;
     return (
       <Router>
         <Header />
@@ -42,6 +42,12 @@ class App extends React.Component {
           </Route>
           <Route path="/snippets">
             <SnippetsPage />
+          </Route>
+          <Route path="/account">
+            <AccountPage
+              onLogin={this.submitLogin}
+              onSignup={this.submitSignup}
+            />
           </Route>
           <Route>
             <FourOhFourPage />

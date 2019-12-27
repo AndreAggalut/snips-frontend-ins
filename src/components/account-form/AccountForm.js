@@ -29,7 +29,7 @@ export default class AccountForm extends Component {
     return (
       <section className="forms">
         <div className="signupForm">
-          <h2>Sign Up</h2>
+          {this.props.isLogin ? <h2>Login</h2> : <h2>Sign Up</h2>}
           <form onSubmit={this.handleSubmit}>
             <label htmlFor="name" className="halfwidth">
               Name
@@ -49,7 +49,11 @@ export default class AccountForm extends Component {
                 onChange={event => this.handleChange(event, 'password')}
               />
             </label>
-            <button type="submit">Sign Up</button>
+            {this.props.isLogin ? (
+              <button type="submit">Login </button>
+            ) : (
+              <button type="submit">Sign Up</button>
+            )}
           </form>
         </div>
       </section>
@@ -58,5 +62,6 @@ export default class AccountForm extends Component {
 }
 
 AccountForm.propTypes = {
+  isLogin: PropTypes.bool.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };
